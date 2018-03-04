@@ -3,24 +3,26 @@ import React, { Component } from "react";
 class New extends Component {
   render() {
     return (
-      <div class="jumbotron">
-        <div class="centertext">
-          <form action="#">
-            <p>Tournament name</p>
-            <input type="text" name="name" size="15"></input><br></br>
-            <p>Tournament dates</p>
-            <input type="date" name="date" size="15"></input><br></br>
-            <p>Tournament organizer</p>
-            <input type="text" name="organizer" size="15"></input><br></br>
-            <p>Tournament type</p>
-            <select name="tournamentType">
-              <option value="Group + eli">Group + elimination</option>
-              <option value="single elimination">Single elimination</option>
-              <option value="etc">Etc</option>
-            </select><br></br>
-          </form>
-          <br></br>
-          <h2><button type="submit">Create</button></h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="jumbotron text-center">
+              <form>
+                <label for="tournyName">Tournament name:</label>
+                <input type="text" class="form-control" id="tournyName"></input>
+                <label for="nrOfTeams">Number of participating teams:</label>
+                <input type="number" class="form-control" id="nrOfTeams" min="1" max="32"></input>
+                <label for="dates">Tournament date:</label>
+                <input type="date" class="form-control" id="date"></input>
+                <label for="tournyOrganizer">Tournament organizer:</label>
+                <input type="text" class="form-control" id="tournyOrganizer"></input>
+                <label for="tournyLocation">Tournament location:</label>
+                <input type="text" class="form-control" id="tournyLocation"></input>
+                <br></br>
+                <button type="submit" class="btn btn-primary">Create tournament</button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );
