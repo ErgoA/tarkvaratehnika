@@ -20,7 +20,7 @@ public class TeamController {
         return teamRepository.findAll();
     }
 
-    // create a new tournament
+    // create a new team
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/addTeam")
     public @ResponseBody String createTeam(@RequestParam(value="name", required=true) String name,
