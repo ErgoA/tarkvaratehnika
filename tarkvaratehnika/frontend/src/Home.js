@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactModalLogin from 'react-modal-login';
 
 class Home extends React.Component {
