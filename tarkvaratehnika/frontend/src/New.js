@@ -24,14 +24,8 @@ class New extends Component {
               <form>
                 <label for="tournyName">Tournament name:</label>
                 <input type="text" class="form-control" id="tournyName"></input>
-                <label for="nrOfTeams">Number of participating teams:</label>
-                <input type="number" class="form-control" id="nrOfTeams" min="1" max="32"></input>
-                <label for="dates">Tournament date:</label>
-                <input type="date" class="form-control" id="date"></input>
                 <label for="tournyOrganizer">Tournament organizer:</label>
                 <input type="text" class="form-control" id="tournyOrganizer"></input>
-                <label for="tournyLocation">Tournament location:</label>
-                <input type="text" class="form-control" id="tournyLocation"></input>
                 <br></br>
                 <button type="submit" onClick={this.addTournament} class="btn btn-primary">Create tournament</button>
               </form>

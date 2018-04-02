@@ -10,6 +10,8 @@ import Tournaments from "./Tournaments";
 import View from "./View";
 import Fixtures from "./Fixtures";
 import VisitorView from "./VisitorView";
+import template from "./template";
+import addTeams from "./addTeams";
 
 class Main extends Component {
   render() {
@@ -31,6 +33,8 @@ class Main extends Component {
             <Route path="/Fixtures" component={Fixtures}/>
             <Route path="/View" component={View}/>
             <Route path="/VisitorView" component={VisitorView}/>
+            <Route path="/template" component={template}/>
+            <Route path="/addTeams" component={addTeams}/>
           </div>
         </div>
       </HashRouter>

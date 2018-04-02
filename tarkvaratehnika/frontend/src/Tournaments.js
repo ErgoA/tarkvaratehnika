@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Template from './template';
 
 const API = 'http://localhost:8080/api/tournaments';
 
@@ -7,8 +8,9 @@ class Tournaments extends Component {
   constructor() {
     super();
     this.state = {
-      data: [],
+      data: []
     }
+    this.testfun = this.testfun.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +24,17 @@ class Tournaments extends Component {
     })
   }
 
+  testfun(e) {
+    var target = e.target;
+    console.log(target);
+
+    let newClickedData = [];
+    newClickedData.push(target);
+    this.setState({
+       clickedData: newClickedData
+    });
+  }
+
   render() {
     return(
       <div class="container">
@@ -31,7 +44,7 @@ class Tournaments extends Component {
               {
                 this.state.data.map((dynamicData, key) =>
                 <div>
-                  <a href={"/#/" + dynamicData.name}>{dynamicData.name}</a>
+                  <a href={"/#/addTeams"} onClick={this.testfun}>{dynamicData.name}</a>
                 </div>
                 )
               }
