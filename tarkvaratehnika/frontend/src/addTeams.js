@@ -34,6 +34,12 @@ class addTeams extends Component {
      fetch("http://localhost:8080/api/addTeam?name="+name);
   }
 
+  addInput(divName) {
+    var newdiv = document.createElement('div');
+    newdiv.innerHTML = "" + "<input type='text' class='bottomroom' name='playerName'>";
+    document.getElementById(divName).appendChild(newdiv);
+   }
+
   render() {
     return (
       <div class="container">
@@ -46,25 +52,28 @@ class addTeams extends Component {
               <button type="submit" onClick={this.addTeams} class="btn btn-primary">Submit</button>
             </form>
             <br></br>
-            List of registered teams:
+            Registered teams:
             <br></br>
             {
               this.state.data.map((dynamicData, key) =>
               <div class="black">
-              <PanelGroup accordion id="accordion-controlled-example">
+              <PanelGroup accordion id="accordion">
                 <Panel bsStyle="primary" eventKey="1">
                   <Panel.Heading>
                     <Panel.Title toggle>{dynamicData.name} <i class="fas fa-angle-down"></i></Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>Add players</Panel.Body>
                   <Panel.Body collapsible>
+                  <div id="dynamicInput">
                     <input type="text" class="bottomroom"></input>
                     <input type="text" class="bottomroom"></input>
                     <input type="text" class="bottomroom"></input>
                     <input type="text" class="bottomroom"></input>
                     <input type="text" class="bottomroom"></input>
+                  </div>
                     <br></br>
-                    <button type="submit" class="btn btn-primary button"><i class="fas fa-plus"></i></button>
+                    <button type="submit" class="btn btn-primary button" value="Add more players"
+                    onClick= { () => this.addInput('dynamicInput')}><i class="fas fa-plus"></i></button>
                     <button type="submit" class="btn btn-success button"><i class="fas fa-check-circle"></i></button>
                   </Panel.Body>
                 </Panel>

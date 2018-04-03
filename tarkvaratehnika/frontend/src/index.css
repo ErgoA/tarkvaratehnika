@@ -109,3 +109,10 @@ input[type="text"], input[type="date"], input[type="number"] {
 .bottomroom {
   margin-bottom: 5px;
 }
+
+table {
+  border: 1px solid white;
+  table-layout: fixed;
+  width:495px;
+  text-align:left;
+}
