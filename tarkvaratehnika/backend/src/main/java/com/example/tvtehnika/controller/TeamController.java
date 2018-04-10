@@ -25,10 +25,10 @@ public class TeamController {
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/addTeam")
     public @ResponseBody String createNewTeam(@RequestParam(value="name", required=true) String name,
-                                              @RequestParam(value="country", required=true) String country,
-                                              @RequestParam(value="contactPerson", required=true) String contactPerson,
+                                              @RequestParam(value="country", required=false) String country,
+                                              @RequestParam(value="contactPerson", required=false) String contactPerson,
                                               @RequestParam(value="contactPhoneNumber", required=false) String contactPhoneNumber,
-                                              @RequestParam(value="contactEmail", required=true) String contactEmail,
+                                              @RequestParam(value="contactEmail", required=false) String contactEmail,
                                               @RequestParam(value="comment", required=false) String comment){
 
         Team team = new Team();
