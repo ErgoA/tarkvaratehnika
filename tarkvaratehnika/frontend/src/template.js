@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Tournaments from "./Tournaments";
+import './template.css';
+import './index.css';
 
 const tournyAPI = 'http://localhost:8080/api/tournaments';
 const teamAPI = 'http://localhost:8080/api/teams'
@@ -13,6 +15,7 @@ class template extends Component {
       groupA: [],
       groupB: [],
       groupC: [],
+      groupD: [],
     }
   }
 
@@ -41,89 +44,288 @@ class template extends Component {
   }
 
   render() {
-    return (
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-offset-3">
-            <div class="jumbotron text-center">
-            {
-              this.state.tournydata.map((dynamicData, key) =>
-              <div>
-                <h1>{dynamicData.name}</h1>
-              </div>
-              )
-            }
-            GROUP A
-            <table>
-              <tr>
-                <th>Team</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Draws</th>
-                <th>Points</th>
-              </tr>
-            </table>
-            {
-              this.state.groupA.map((teamdynamicData, teamkey) =>
-              <div>
-                <table>
-                  <tr>
-                    <td>{teamdynamicData.name}</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                </table>
-              </div>
-              )
-            }
-            <br></br>
-            GROUP B
-            <table>
-              <tr>
-                <th>Team</th>
-                <th>Wins</th>
-                <th>Losses</th>
-                <th>Draws</th>
-                <th>Points</th>
-              </tr>
-            </table>
-            {
-              this.state.groupB.map((teamdynamicData, teamkey) =>
-              <div>
-                <table>
-                  <tr>
-                    <td>{teamdynamicData.name}</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                  </tr>
-                </table>
-              </div>
-              )
-            }
-            <br></br>
-            Fixtures
-            <table>
-              <tr>
-                <th>Date</th>
-                <th>Teams</th>
-                <th>Score</th>
-              </tr>
-              <tr>
-                <td>01/01/2018 21:45</td>
-                <td><a href="/#/View">Brazil-Italy</a></td>
-                <td>0-0</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    );
-  }
+        return (
+            <div class="content">
+                <div class="box">
+                    <div class="column-1">
+                            <h2>Alagrupid</h2>
+                            <p>Grupp A</p>
+                        
+                        <table class="center">
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th id="th-1">W</th>
+                                <th id="th-1">D</th>
+                                <th id="th-1">L</th>
+                                <th id="th-1">Pts</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Brasiilia</td>
+                                <td id="th-1">3</td>
+                                <td id="th-1">0</td>
+                                <td id="th-1">0</td>
+                                <td id="th-1">9</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Itaalia</td>
+                                <td id="th-1">2</td>
+                                <td id="th-1">0</td>
+                                <td id="th-1">1</td>
+                                <td >6</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Venemaa</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Eesti</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+
+                        <p>Grupp B</p>
+                        <table class="center">
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th id="th-3">W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>Pts</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Prantsusmaa</td>
+                                <td id="th-3">3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Saksamaa</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Ukraina</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Soome</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                            
+                        <p>Grupp C</p>
+                        <table class="center">
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>Pts</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Argentiina</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Horvaatia</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Sloveenia</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Leedu</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+
+                        <p>Grupp D</p>
+                        <table class="center">
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>Pts</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Belgia</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>USA</td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Hiina</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Kreeka</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="column-2">
+                        <h2>Tulemused</h2>
+                        <p>Viimased tulemused</p>
+                        <div>
+                            <table class="result">
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2">0-2</td>
+                                    <td id="td-3">Brasiila</td>
+                                </tr>
+                                <tr>
+                                        <td id="td-1">Venemaa</td>
+                                        <td id="td-2">0-2</td>
+                                        <td id="td-3">Brasiila</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td-1">Venemaa</td>
+                                        <td id="td-2">0-2</td>
+                                        <td id="td-3">Brasiila</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td-1">Venemaa</td>
+                                        <td id="td-2">0-2</td>
+                                        <td id="td-3">Brasiila</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="td-1">Venemaa</td>
+                                        <td id="td-2">0-2</td>
+                                        <td id="td-3">Brasiila</td>
+                                    </tr>
+                            </table>
+                        </div>                        
+                    </div>
+
+                    <div class="column-3">
+                        <h2>Statistika</h2>
+                        <p>Mängijate statistika</p>
+                        <div class="stats">
+                            <div class="tab">
+                                <button class="tablinks" onclick="openStats(event, 'Väravad')" id="defaultOpen">Väravad</button>
+                                <button class="tablinks" onclick="openStats(event, 'Söödud')">Söödud</button>
+                                <button class="tablinks" onclick="openStats(event, 'Kaardid')">Kaardid</button>
+                            </div>
+                            
+                            <div id="Väravad" class="tabcontent">
+                                <h2>Väravad</h2>
+                                <p>Nimekiri...</p>
+                            </div>
+                            
+                            <div id="Söödud" class="tabcontent">
+                                <h2>Söödud</h2>
+                                <p>Nimekiri...</p> 
+                            </div>
+                            
+                            <div id="Kaardid" class="tabcontent">
+                                <h2>Kaardid</h2>
+                                <p>Nimekiri...</p>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 

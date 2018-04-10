@@ -44,7 +44,9 @@ class Tournaments extends Component {
               {
                 this.state.data.map((dynamicData, key) =>
                 <div>
-                  <a href={"/#/addTeams"} onClick={this.testfun}>{dynamicData.name}</a>
+                  <a href={"/#/template"} onClick={this.testfun}>{dynamicData.name}</a>
+                  <a href={"/#/addTeams"}><button type="button" class="btn-lisa">Edit</button></a>
+
                 </div>
                 )
               }

@@ -20,6 +20,11 @@ ul.header {
   text-align:center;
 
 }
+
+li a:hover:not(.active) {
+  background-color: #0099FF;
+}
+
 ul.header li a {
   color: #FFF;
   font-weight: bold;
@@ -41,16 +46,16 @@ ul.header li a {
 .active {
   background-color: #0099FF;
 }
-.box {
+/*.box {
   color:white;
-  background-color:#111;
+  background-color:rgb(150, 44, 44);
   text-color:white;
   font-family:sans-serif;
   padding: 16px;
   border:none;
   display:block;
   margin:auto;
-}
+}*/
 
 .white {
   font-size: 150%;
@@ -106,13 +111,21 @@ input[type="text"], input[type="date"], input[type="number"] {
   margin-right: 5px;
 }
 
+.btn-lisa {
+  margin-left: 20px;
+  border: 0px;
+  background-color: black;
+  opacity: 0.8;
+  font-size: 70%;
+}
+
 .bottomroom {
   margin-bottom: 5px;
 }
 
 table {
   border: 1px solid white;
-  table-layout: fixed;
   width:495px;
   text-align:left;
+  margin-bottom: 40px;
 }

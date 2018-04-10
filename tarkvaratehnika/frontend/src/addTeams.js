@@ -34,6 +34,17 @@ class addTeams extends Component {
      fetch("http://localhost:8080/api/addTeam?name="+name);
   }
 
+  addPlayers() {
+    var pname = document.getElementById("playerName").value;
+    var pnr = document.getElementById('playerNumber').value;
+    //var pname = "karl";
+    //var pnr = 45;
+    var teamId = document.getElementById('teamId').value;
+    console.log(pname);
+    console.log(pnr);
+    fetch("http://localhost:8080/api/addPlayer?name="+pname+"&number="+pnr+"&teamId="+teamId);
+ }
+
   addInput(divName) {
     var newdiv = document.createElement('div');
     newdiv.innerHTML = "" + "<input type='text' class='bottomroom' name='playerName'>";
@@ -65,16 +76,12 @@ class addTeams extends Component {
                   <Panel.Body collapsible>Add players</Panel.Body>
                   <Panel.Body collapsible>
                   <div id="dynamicInput">
-                    <input type="text" class="bottomroom"></input>
-                    <input type="text" class="bottomroom"></input>
-                    <input type="text" class="bottomroom"></input>
-                    <input type="text" class="bottomroom"></input>
-                    <input type="text" class="bottomroom"></input>
+                    <input type="int" class="bottomroom" id="teamId" value={dynamicData.id}></input>
+                    <input type="text" class="bottomroom" id="playerName"></input>
+                    <input type="text" class="bottomroom" id="playerNumber"></input>
                   </div>
                     <br></br>
-                    <button type="submit" class="btn btn-primary button" value="Add more players"
-                    onClick= { () => this.addInput('dynamicInput')}><i class="fas fa-plus"></i></button>
-                    <button type="submit" class="btn btn-success button"><i class="fas fa-check-circle"></i></button>
+                    <button type="submit" onClick={this.addPlayers} class="btn btn-success button"><i class="fas fa-check-circle"></i></button>
                   </Panel.Body>
                 </Panel>
               </PanelGroup>
