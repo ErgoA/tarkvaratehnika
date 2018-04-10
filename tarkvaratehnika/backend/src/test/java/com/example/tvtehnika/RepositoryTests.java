@@ -79,6 +79,23 @@ public class RepositoryTests {
       .isEqualTo(player.getName());
 	}
 
+	@Test
+	public void playerByTeam() {
+    // given
+    Player player = new Player("Robin Under the Hood", 66); 
+	Team team = new Team("Raji","Hakas","Oliver Twist", "112", "Oliver@hot.ee","cool team");
+	entityManager.persist(team);
+	player.setTeam(team);
+    entityManager.persist(player);
+    entityManager.flush();
+ 
+    // when
+    Player found = playerRepository.findByName(player.getName());
+ 
+    // then
+    assertThat(found.getTeam())
+      .isEqualTo(player.getTeam());
+	}
 
 	
 }
