@@ -27,15 +27,6 @@ class addTeams extends Component {
         data:findresponse,
       })
     })
-
-    fetch('http://localhost:8080/api/playersByTeam/46')
-      .then((playerResponse) => playerResponse.json())
-      .then((findplayer) => {
-        console.log(findplayer)
-        this.setState({
-          players:findplayer,
-        })
-      })
   }
 
   addTeams() {
@@ -62,6 +53,19 @@ class addTeams extends Component {
     document.getElementById(divName).appendChild(newdiv);
    }
 
+   showPlayers(key) {
+     var testdata = document.getElementById('teamId' + key).value;
+     console.log(testdata);
+     fetch('http://localhost:8080/api/playersByTeam/' + testdata)
+       .then((playerResponse) => playerResponse.json())
+       .then((findplayer) => {
+         console.log(findplayer)
+         this.setState({
+           players:findplayer,
+         })
+       })
+   }
+
   render() {
     return (
       <div class="container">
@@ -82,7 +86,7 @@ class addTeams extends Component {
               <PanelGroup accordion id="accordion">
                 <Panel bsStyle="primary" eventKey="1">
                   <Panel.Heading>
-                    <Panel.Title toggle>{dynamicData.name} <i class="fas fa-angle-down"></i></Panel.Title>
+                    <Panel.Title toggle onClick={() => this.showPlayers(key)}>{dynamicData.name} <i class="fas fa-angle-down"></i></Panel.Title>
                   </Panel.Heading>
                   <Panel.Body collapsible>Add players</Panel.Body>
                   <Panel.Body collapsible>
