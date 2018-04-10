@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import com.example.tvtehnika.repository.*;
 import com.example.tvtehnika.model.*;
-
-
 import javax.persistence.JoinColumn;
 import java.util.List;
 
@@ -17,14 +14,12 @@ import java.util.List;
 public class PlayerController {
     @Autowired PlayerRepository playerRepository;
     @Autowired TeamRepository teamRepository;
-    //get all players
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/players")
     public @ResponseBody List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
 
-    // create a new player
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/addPlayer")
     public @ResponseBody String createPlayer(@RequestParam(value="name", required=true) String name,
@@ -54,12 +49,10 @@ public class PlayerController {
         playerRepository.save(player);
         return "Saved";
     }
-	
-	//Get Players by team_id
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/playersByTeam/{teamId}")
     public @ResponseBody List<Player> getAllPlayersByTeamId(@PathVariable(value = "teamId") int teamId) {
         return playerRepository.findByTeamid(teamId);
     }
-
 }

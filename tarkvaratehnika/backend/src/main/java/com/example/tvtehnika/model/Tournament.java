@@ -1,10 +1,8 @@
 package com.example.tvtehnika.model;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -48,10 +46,8 @@ public class Tournament {
         return Id;
     }
 
-
     public void setId(int id) {
         Id = id;
-
     }
 
     public String getName() {
@@ -78,7 +74,6 @@ public class Tournament {
     public void setOrganizer(String organizer) {
         Organizer = organizer;
     }
-
 
     public String getInfo() {
         return info;
