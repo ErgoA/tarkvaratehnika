@@ -10,6 +10,7 @@ class addTeams extends Component {
     this.state = {
       data: [],
       activeKey: '1',
+      players: [],
     };
   }
 
@@ -26,6 +27,15 @@ class addTeams extends Component {
         data:findresponse,
       })
     })
+
+    fetch('http://localhost:8080/api/playersByTeam/46')
+      .then((playerResponse) => playerResponse.json())
+      .then((findplayer) => {
+        console.log(findplayer)
+        this.setState({
+          players:findplayer,
+        })
+      })
   }
 
   addTeams() {
@@ -34,15 +44,16 @@ class addTeams extends Component {
      fetch("http://localhost:8080/api/addTeam?name="+name);
   }
 
-  addPlayers() {
-    var pname = document.getElementById("playerName").value;
-    var pnr = document.getElementById('playerNumber').value;
-    //var pname = "karl";
-    //var pnr = 45;
-    var teamId = document.getElementById('teamId').value;
-    console.log(pname);
-    console.log(pnr);
-    fetch("http://localhost:8080/api/addPlayer?name="+pname+"&number="+pnr+"&teamId="+teamId);
+  addPlayers(key) {
+    var playerName = document.getElementById('playerName' + key).value;
+    var playerNumber = parseInt(document.getElementById('pnr' + key).value);
+  //  var playerName = "jaanus";
+  //  var playerNumber = 420;
+    var teamId = parseInt(document.getElementById('teamId' + key).value);
+    console.log(playerName);
+    console.log(playerNumber);
+    console.log(teamId);
+    fetch("http://localhost:8080/api/addPlayer?name="+playerName+"&number="+playerNumber+"&teamId="+teamId);
  }
 
   addInput(divName) {
@@ -76,12 +87,15 @@ class addTeams extends Component {
                   <Panel.Body collapsible>Add players</Panel.Body>
                   <Panel.Body collapsible>
                   <div id="dynamicInput">
-                    <input type="int" class="bottomroom" id="teamId" value={dynamicData.id}></input>
-                    <input type="text" class="bottomroom" id="playerName"></input>
-                    <input type="text" class="bottomroom" id="playerNumber"></input>
+                    <input type="text" class="bottomroom" placeholder="Player name" id={"playerName"+key}></input>
+                    <input type="text" class="bottomroom" placeholder="Player number" id={"pnr"+key}></input>
+                    <input type="hidden" class="bottomroom" id={"teamId"+key} value={dynamicData.id}></input>
+                    {this.state.players.map((playersData, key) =>
+                      <p>{playersData.name}</p>
+                    )}
                   </div>
                     <br></br>
-                    <button type="submit" onClick={this.addPlayers} class="btn btn-success button"><i class="fas fa-check-circle"></i></button>
+                    <button type="submit" onClick={() => this.addPlayers(key)} class="btn btn-success button"><i class="fas fa-check-circle"></i></button>
                   </Panel.Body>
                 </Panel>
               </PanelGroup>
