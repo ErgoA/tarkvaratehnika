@@ -27,10 +27,13 @@ li a:hover:not(.active) {
 
 /* page */
 
-.box {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
+.col-container {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+    box-sizing: border-box;
 }
 
 /*.box div {
@@ -42,24 +45,21 @@ li a:hover:not(.active) {
 
 /* kastid */
 
-.column-1 { 
-    float: left; 
-    min-width: 30%; 
+.column-left { 
+    order: 1;
+    margin-left: 100px;
     text-align: center;
+}
+.column-center {
+    order: 2;
     margin-left: 30px;
-}
-.column-2 { 
-    display: inline-block;
-    float: left;
-    min-width: 30%; 
-    text-align: center;
-    margin-left: 25px;
-}
-.column-3 { 
-    float: right; 
-    min-width: 30%;   
-    text-align: center;
     margin-right: 30px;
+    text-align: center;
+}
+.column-right {
+    order: 3;
+    margin-right: 10px;
+    text-align: center;
 } 
 
 
@@ -72,7 +72,6 @@ li a:hover:not(.active) {
 }
 
 table {
-    background: white;
     opacity: 0.9;
 }
 

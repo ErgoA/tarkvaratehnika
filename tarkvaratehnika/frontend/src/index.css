@@ -8,6 +8,8 @@ body {
 h1, h2, p, ul, li {
   font-family: sans-serif;
   font-size: 80%;
+  background: #111111;
+  color: white;
 }
 ul.header li {
   display: inline;
@@ -15,10 +17,9 @@ ul.header li {
   margin: 0;
 }
 ul.header {
-  background-color: #111;
+  background-color: #111111;
   padding: 0;
   text-align:center;
-
 }
 
 li a:hover:not(.active) {
@@ -124,8 +125,10 @@ input[type="text"], input[type="date"], input[type="number"] {
 }
 
 table {
-  border: 1px solid white;
+  border: 1px solid black;
   width:495px;
   text-align:left;
   margin-bottom: 40px;
+  background: #111111;
+  color: white;
 }
