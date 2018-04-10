@@ -1,12 +1,15 @@
 package com.example.tvtehnika.model;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collection;
+
 
 @Entity
 public class Team {
@@ -40,6 +43,7 @@ public class Team {
 	    player.setTeam(null);
     }
 	*/
+	
 
     public Team(String name, String country, String contactPerson, String contactPhoneNumber, String contactEmail, String comment) {
         this.name = name;

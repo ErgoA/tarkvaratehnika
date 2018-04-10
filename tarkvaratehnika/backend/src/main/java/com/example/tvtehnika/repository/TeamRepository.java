@@ -12,4 +12,7 @@ import com.example.tvtehnika.model.*;
 public interface TeamRepository extends JpaRepository<Team, Integer> {
 	@Query(value="Select id from team",nativeQuery=true)
 	List<Integer> getAllIds();
+	
+	public Team findByName(String name);
+
 }

@@ -18,6 +18,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Integer>
 	@Query(value="DELETE * FROM tournament", nativeQuery=true)
 	void deleteAll();
 	*/
-	
+	public Tournament findByName(String name);
 }
 
