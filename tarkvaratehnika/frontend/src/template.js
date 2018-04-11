@@ -50,7 +50,7 @@ class template extends Component {
                     <div class="column-left">
                             <h2>Alagrupid</h2>
                             <p>Grupp A</p>
-
+                        
                         <table class="center">
                             <tr>
                                 <th>Pos</th>
@@ -62,7 +62,7 @@ class template extends Component {
                             </tr>
                             <tr>
                                 <td>1</td>
-                                <td>Brasiilia</td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/83">Brasiilia</a></td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
@@ -70,7 +70,7 @@ class template extends Component {
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Itaalia</td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/74">Itaalia</a></td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
@@ -137,7 +137,7 @@ class template extends Component {
                                 <td id="th-1">1</td>
                             </tr>
                         </table>
-
+                            
                         <p>Grupp C</p>
                         <table class="center">
                             <tr>
@@ -234,66 +234,66 @@ class template extends Component {
                             <table>
                                 <tr>
                                     <td id="td-1">Venemaa</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">2-0</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">0-2</a></td>
                                     <td id="td-3">Brasiila</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Itaalia</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">7-0</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">7-0</a></td>
                                     <td id="td-3">Eesti</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Prantsusmaa</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">1-0</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">1-0</a></td>
                                     <td id="td-3">Saksamaa</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Ukraina</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">2-2</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">2-2</a></td>
                                     <td id="td-3">Soome</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Argentiina</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">3-1</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">3-1</a></td>
                                     <td id="td-3">Horvaatia</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Sloveenia</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">0-0</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">0-0</a></td>
                                     <td id="td-3">Leedu</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Belgia</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">3-2</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">3-2</a></td>
                                     <td id="td-3">USA</td>
                                 </tr>
                                 <tr>
                                     <td id="td-1">Hiina</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/VisitorView">0-0</a></td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">0-0</a></td>
                                     <td id="td-3">Kreeka</td>
                                 </tr>
                                 <tr>
-                                        <td id="td-1">Venemaa</td>
-                                        <td id="td-2"><a href="http://localhost:3000/#/VisitorView">1-0</a></td>
-                                        <td id="td-3">Itaalia</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td-1">Prantsusmaa</td>
-                                        <td id="td-2"><a href="http://localhost:3000/#/VisitorView">5-0</a></td>
-                                        <td id="td-3">Soome</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td-1">Argentiina</td>
-                                        <td id="td-2"><a href="http://localhost:3000/#/VisitorView">3-0</a></td>
-                                        <td id="td-3">Leedu</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="td-1">Belgia</td>
-                                        <td id="td-2"><a href="http://localhost:3000/#/VisitorView">2-1</a></td>
-                                        <td id="td-3">Hiina</td>
-                                    </tr>
+                                    <td id="td-1">Venemaa</td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">1-0</a></td>
+                                    <td id="td-3">Itaalia</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Prantsusmaa</td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">5-0</a></td>
+                                    <td id="td-3">Soome</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Argentiina</td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">3-0</a></td>
+                                    <td id="td-3">Leedu</td>
+                                </tr>
+                                <tr>
+                                    <td id="td-1">Belgia</td>
+                                    <td id="td-2"><a href="http://localhost:3000/#/View">2-1</a></td>
+                                    <td id="td-3">Hiina</td>
+                                </tr>
                             </table>
-                        </div>
+                        </div>                        
                     </div>
 
                     <div class="column-right">
@@ -305,21 +305,21 @@ class template extends Component {
                                 <button class="tablinks" onclick="openStats(event, 'Söödud')">Söödud</button>
                                 <button class="tablinks" onclick="openStats(event, 'Kaardid')">Kaardid</button>
                             </div>
-
+                            
                             <div id="Väravad" class="tabcontent">
                                 <h2>Väravad</h2>
                                 <p>Nimekiri...</p>
                             </div>
-
+                            
                             <div id="Söödud" class="tabcontent">
                                 <h2>Söödud</h2>
-                                <p>Nimekiri...</p>
+                                <p>Nimekiri...</p> 
                             </div>
-
+                            
                             <div id="Kaardid" class="tabcontent">
                                 <h2>Kaardid</h2>
                                 <p>Nimekiri...</p>
-                            </div>
+                            </div>                        
                         </div>
                     </div>
                 </div>
