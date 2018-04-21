@@ -7,6 +7,9 @@ const API = 'http://localhost:8080/api/teams';
 class addTeams extends Component {
   constructor() {
     super();
+
+    this.handleSelect = this.handleSelect.bind(this);
+
     this.state = {
       data: [],
       activeKey: '1',
@@ -82,9 +85,11 @@ class addTeams extends Component {
             <br></br>
             {
               this.state.data.map((dynamicData, key) =>
-              <div class="black">
-              <PanelGroup accordion id="accordion">
-                <Panel bsStyle="primary" eventKey="1">
+              <div class="black" id="panels">
+              <PanelGroup accordion id="accordion"
+              activeKey={this.state.activeKey}
+              onSelect={this.handleSelect}>
+                <Panel bsStyle="primary" eventKey={dynamicData.id}>
                   <Panel.Heading>
                     <Panel.Title toggle onClick={() => this.showPlayers(key)}>{dynamicData.name} <i class="fas fa-angle-down"></i></Panel.Title>
                   </Panel.Heading>
