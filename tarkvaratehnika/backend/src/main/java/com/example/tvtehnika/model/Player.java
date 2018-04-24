@@ -1,14 +1,8 @@
 package com.example.tvtehnika.model;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.*;
 
-
-@Entity
+@Entity(name="player")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +11,7 @@ public class Player {
 	private int number;
     //private enum position {Goalkeeper,Defender,Midfield,Forward};
 	@ManyToOne(fetch=FetchType.LAZY)
-    //@JoinColumn(name="TeamId")
     private Team team;
-	
 	
     public Team getTeam() {
         return team;
@@ -28,9 +20,6 @@ public class Player {
     public void setTeam(Team team) {
         this.team = team;
     }
-	
-  
-
 
     public Player() {
     }

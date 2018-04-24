@@ -1,14 +1,8 @@
 package com.example.tvtehnika.model;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 
 
 @Entity
@@ -27,9 +21,22 @@ public class Team {
 	    mappedBy="team",
 		fetch=FetchType.LAZY,
         cascade = CascadeType.ALL 
-        /*,orphanRemoval = true*/
     )
 	private List<Player> players;
+
+    @OneToMany(
+            mappedBy="team1",
+            fetch=FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<Match> team1;
+    @OneToMany(
+            mappedBy="team2",
+            fetch=FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<Match> team2;
+
     //private List<Player> players=new ArrayList<>();
 	
 	/*
