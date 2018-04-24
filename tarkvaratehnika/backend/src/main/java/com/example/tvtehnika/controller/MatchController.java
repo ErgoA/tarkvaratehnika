@@ -29,8 +29,8 @@ public class MatchController {
     // create a new match
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/addMatch")
-    public @ResponseBody String createMatch(@RequestParam(value="team1", required=true) int team1Id,
-                                            @RequestParam(value="team2", required=true) int team2Id,
+    public @ResponseBody String createMatch(@RequestParam(value="team1Id", required=true) int team1Id,
+                                            @RequestParam(value="team2Id", required=true) int team2Id,
                                             @RequestParam(value="result", required=false) String result){
 
 
