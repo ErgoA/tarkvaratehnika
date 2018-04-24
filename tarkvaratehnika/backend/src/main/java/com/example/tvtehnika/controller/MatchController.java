@@ -63,17 +63,7 @@ public class MatchController {
         Match match=matchRepository.getOne(matchId);
         match.setResult(result);
         matchRepository.save(match);
-/*
-        Team team1=teamRepository.getOne(team1Id);
-        Team team2=teamRepository.getOne(team2Id);
 
-        Match match= new Match();
-        match.setTeam1(team1);
-        match.setTeam2(team2);
-        if(result!=null&&!result.isEmpty()){match.setResult(result);}
-
-        matchRepository.save(match);
-        */
         return "Saved";
     }
 
