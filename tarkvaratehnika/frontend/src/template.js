@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Parser from 'html-react-parser';
 import Tournaments from "./Tournaments";
 import './template.css';
 import './index.css';
@@ -40,7 +41,6 @@ class template extends Component {
     fetch(tournyAPI)
     .then((Response) => Response.json())
     .then((findresponse) => {
-      console.log(findresponse)
       this.setState({
         tournydata:findresponse.filter(res => res.id === 18),
       })
@@ -49,32 +49,30 @@ class template extends Component {
     fetch(teamAPI)
     .then((teamResponse) => teamResponse.json())
     .then((teamfindresponse) => {
-      console.log(teamfindresponse.slice(0,4))
-      console.log(teamfindresponse.slice(4,8))
-      console.log(teamfindresponse.slice(8,12))
+      var length = teamfindresponse.length;
+      var i;
+      for (i=0; i<length; i++) {
+        if (teamfindresponse[i].name == "Kassid") {
+          var teamA = (teamfindresponse[i].name);
+          break;
+        }
+      }
       this.setState({
         groupA:teamfindresponse.slice(0,4),
         groupB:teamfindresponse.slice(4,8),
         groupC:teamfindresponse.slice(8,12),
-        team1:teamfindresponse.slice(0,1),
-        team2:teamfindresponse.slice(1,2),
-        team3:teamfindresponse.slice(2,3),
-        team4:teamfindresponse.slice(3,4),
-        team5:teamfindresponse.slice(4,5),
-        team6:teamfindresponse.slice(5,6),
-        team7:teamfindresponse.slice(6,7),
-        team8:teamfindresponse.slice(7,8),
-        team9:teamfindresponse.slice(8,9),
-        team10:teamfindresponse.slice(9,10),
-        team11:teamfindresponse.slice(10,11),
-        team12:teamfindresponse.slice(11,12),
-        team13:teamfindresponse.slice(12,13),
-        team14:teamfindresponse.slice(13,14),
-        team15:teamfindresponse.slice(14,15),
-        team16:teamfindresponse.slice(15,16),
+        team1:teamfindresponse[0].name,
+        team2:teamfindresponse[1].name,
+        team3:teamfindresponse[2].name,
+        team4:teamfindresponse[3].name,
+        team5:teamfindresponse[4].name,
+        team6:teamfindresponse[5].name,
+        team7:teamfindresponse[6].name,
+        team8:teamfindresponse[7].name,
       })
     })
   }
+
 
   render() {
         return (
@@ -93,50 +91,38 @@ class template extends Component {
                                 <th id="th-1">L</th>
                                 <th id="th-1">Pts</th>
                             </tr>
-                            {
-                              this.state.team1.map((dynamicData, key) =>
                             <tr>
                                 <td>1</td>
-                                <td><a href="http://localhost:8080/api/playersByTeam/83">{dynamicData.name}</a></td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/83">{this.state.team1}</a></td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">9</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team2.map((dynamicData, key) =>
                             <tr>
                                 <td>2</td>
-                                <td><a href="http://localhost:8080/api/playersByTeam/74">{dynamicData.name}</a></td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/74">{this.state.team2}</a></td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">6</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team3.map((dynamicData, key) =>
                             <tr>
                                 <td>3</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team3}</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">4</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team4.map((dynamicData, key) =>
                             <tr>
                                 <td>4</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team4}</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">1</td>
                             </tr>
-                            )}
                         </table>
 
                         <p>Grupp B</p>
@@ -144,55 +130,43 @@ class template extends Component {
                             <tr>
                                 <th>Pos</th>
                                 <th>Team</th>
-                                <th id="th-3">W</th>
+                                <th id="th-1">W</th>
                                 <th id="th-1">D</th>
                                 <th id="th-1">L</th>
                                 <th id="th-1">Pts</th>
                             </tr>
-                            {
-                              this.state.team5.map((dynamicData, key) =>
                             <tr>
                                 <td>1</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team5}</td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">9</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team6.map((dynamicData, key) =>
                             <tr>
                                 <td>2</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team6}</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">6</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team7.map((dynamicData, key) =>
                             <tr>
                                 <td>3</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team7}</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">4</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team8.map((dynamicData, key) =>
                             <tr>
                                 <td>4</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team8}</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">1</td>
                             </tr>
-                            )}
                         </table>
 
                         <p>Grupp C</p>
@@ -205,50 +179,38 @@ class template extends Component {
                                 <th id="th-1">L</th>
                                 <th id="th-1">Pts</th>
                             </tr>
-                            {
-                              this.state.team9.map((dynamicData, key) =>
                             <tr>
                                 <td>1</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team9}</td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">9</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team10.map((dynamicData, key) =>
                             <tr>
                                 <td>2</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team11}</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">6</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team11.map((dynamicData, key) =>
                             <tr>
                                 <td>3</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team11}</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">4</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team12.map((dynamicData, key) =>
                             <tr>
                                 <td>4</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team12}</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">1</td>
                             </tr>
-                            )}
                         </table>
 
                         <p>Grupp D</p>
@@ -261,50 +223,38 @@ class template extends Component {
                                 <th id="th-1">L</th>
                                 <th id="th-1">Pts</th>
                             </tr>
-                            {
-                              this.state.team13.map((dynamicData, key) =>
                             <tr>
                                 <td>1</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team13}</td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">9</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team14.map((dynamicData, key) =>
                             <tr>
                                 <td>2</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team14}</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">6</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team15.map((dynamicData, key) =>
                             <tr>
                                 <td>3</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team15}</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">4</td>
                             </tr>
-                            )}
-                            {
-                              this.state.team16.map((dynamicData, key) =>
                             <tr>
                                 <td>4</td>
-                                <td>{dynamicData.name}</td>
+                                <td>{this.state.team16}</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">1</td>
                                 <td id="th-1">2</td>
                                 <td id="th-1">1</td>
                             </tr>
-                            )}
                         </table>
                     </div>
 
@@ -314,19 +264,19 @@ class template extends Component {
                         <div>
                             <table>
                                 <tr>
-                                    <td id="td-1">hjhgjg</td>
+                                    <td id="td-1">{this.state.team1}</td>
                                     <td id="td-2"><a href="http://localhost:3000/#/View">0-2</a></td>
-                                    <td id="td-3">hkjh</td>
+                                    <td id="td-3">{this.state.team2}</td>
                                 </tr>
                                 <tr>
-                                    <td id="td-1">Itaalia</td>
+                                    <td id="td-1">{this.state.team3}</td>
                                     <td id="td-2"><a href="http://localhost:3000/#/View">7-0</a></td>
-                                    <td id="td-3">Eesti</td>
+                                    <td id="td-3">{this.state.team4}</td>
                                 </tr>
                                 <tr>
-                                    <td id="td-1">Prantsusmaa</td>
+                                    <td id="td-1">{this.state.team5}</td>
                                     <td id="td-2"><a href="http://localhost:3000/#/View">1-0</a></td>
-                                    <td id="td-3">Saksamaa</td>
+                                    <td id="td-3">{this.state.team6}</td>
                                 </tr>
                             </table>
                         </div>

@@ -35,6 +35,10 @@ class Tournaments extends Component {
     });
   }
 
+  reply_click(event) {
+    console.log(event.target.getAttribute('id'))
+  }
+
   render() {
     return(
       <div class="container">
@@ -44,7 +48,7 @@ class Tournaments extends Component {
               {
                 this.state.data.map((dynamicData, key) =>
                 <div>
-                  <a href={"/#/template"} onClick={this.testfun}>{dynamicData.name}</a>
+                  <a href={"/#/template"} id={dynamicData.id} onClick={this.reply_click}>{dynamicData.name}</a>
                   <a href={"/#/addTeams"}><button type="button" class="btn-lisa">Edit</button></a>
 
                 </div>
