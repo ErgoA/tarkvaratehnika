@@ -1,16 +1,14 @@
 package com.example.tvtehnika.controller;
 
+import com.example.tvtehnika.model.Match;
+import com.example.tvtehnika.model.Tournament;
+import com.example.tvtehnika.repository.MatchRepository;
+import com.example.tvtehnika.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.jpa.domain.JpaSort;
 
-import com.example.tvtehnika.repository.*;
-import com.example.tvtehnika.model.*;
-
-
-import javax.persistence.Id;
 import java.util.List;
 
 @Controller
@@ -18,6 +16,8 @@ import java.util.List;
 public class TournamentController {
     @Autowired
     TournamentRepository tournamentRepository;
+    @Autowired
+    MatchRepository matchRepository;
 
     //get all tournaments
 	@CrossOrigin(origins = "http://localhost:3000")
@@ -46,5 +46,15 @@ public class TournamentController {
         return tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new ResourceNotFoundException("Tournament not found"));
     }
+
+    // get Matches by tournamentId
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/matchesByTournament/{tournamentId}")
+    public @ResponseBody List<Match> getAllMatchesByTournamentId(@PathVariable(value = "tournamentId") int tournamentId) {
+        return matchRepository.findByTournamentId(tournamentId);
+    }
+
+
+
 
 }

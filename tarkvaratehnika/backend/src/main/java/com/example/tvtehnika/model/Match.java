@@ -15,6 +15,17 @@ public class Match {
 
     private String result;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Tournament tournament;
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
     public int getId() {
         return Id;
     }

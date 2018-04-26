@@ -1,11 +1,9 @@
 package com.example.tvtehnika.model;
 
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Tournament {
@@ -15,6 +13,9 @@ public class Tournament {
     private String name;
     private String Organizer;
     private String info;
+
+    @OneToMany(mappedBy="tournament")
+    private Set<Match> matches=new HashSet<>();
 
     //private List<Team> teams;
 

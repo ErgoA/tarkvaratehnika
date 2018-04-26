@@ -18,6 +18,8 @@ public class MatchController {
     TeamRepository teamRepository;
     @Autowired
     MatchRepository matchRepository;
+    @Autowired
+    TournamentRepository tournamentRepository;
 
     // get all matches
     @CrossOrigin(origins = "http://localhost:3000")
@@ -31,15 +33,20 @@ public class MatchController {
     @GetMapping(path="/addMatch")
     public @ResponseBody String createMatch(@RequestParam(value="team1Id", required=true) int team1Id,
                                             @RequestParam(value="team2Id", required=true) int team2Id,
-                                            @RequestParam(value="result", required=false) String result){
+                                            @RequestParam(value="result", required=false) String result,
+                                            @RequestParam(value="tournamentId",required=false) int tournamentId){
 
 
         Team team1=teamRepository.getOne(team1Id);
         Team team2=teamRepository.getOne(team2Id);
 
+        Tournament tournament=tournamentRepository.getOne(tournamentId);
+
         Match match= new Match();
         match.setTeam1(team1);
         match.setTeam2(team2);
+        match.setTournament(tournament);
+
         if(result!=null&&!result.isEmpty()){match.setResult(result);}
 
         matchRepository.save(match);
@@ -55,15 +62,22 @@ public class MatchController {
     }
 
     // update a match
-    @CrossOrigin
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/updateMatch")
     public @ResponseBody String updateMatch(@RequestParam(value="matchId", required=true) int matchId,
-                                            @RequestParam(value="result", required=true) String result){
+                                            @RequestParam(value="result", required=true) String result,
+                                            @RequestParam(value="tournamentId",required=false) String tournamentId){
 
         Match match=matchRepository.getOne(matchId);
         match.setResult(result);
-        matchRepository.save(match);
 
+        if(tournamentId!=null&&!tournamentId.isEmpty()) {
+            int tId=Integer.parseInt(tournamentId);
+            Tournament tournament = tournamentRepository.getOne(tId);
+            match.setTournament(tournament);
+        }
+
+        matchRepository.save(match);
         return "Saved";
     }
 

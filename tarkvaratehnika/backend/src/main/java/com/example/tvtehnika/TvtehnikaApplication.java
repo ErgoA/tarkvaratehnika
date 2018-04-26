@@ -1,16 +1,21 @@
 package com.example.tvtehnika;
 
-import com.example.tvtehnika.model.*;
-import com.example.tvtehnika.repository.*;
+import com.example.tvtehnika.model.Match;
+import com.example.tvtehnika.model.Player;
+import com.example.tvtehnika.model.Team;
+import com.example.tvtehnika.model.Tournament;
+import com.example.tvtehnika.repository.MatchRepository;
+import com.example.tvtehnika.repository.PlayerRepository;
+import com.example.tvtehnika.repository.TeamRepository;
+import com.example.tvtehnika.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.List;
 
-import java.math.BigInteger;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootApplication
 public class TvtehnikaApplication {
@@ -39,8 +44,7 @@ public class TvtehnikaApplication {
 				repository.save(new Team("Haned","Poland","William Tell","5835835","info@info.pl","cool stuff bro"));
 				repository.save(new Team("Kanad","Norway","Madonna","5358885","info@info.nw","cool stuff bro"));
 				repository.save(new Team("Pardid","Germany","Vladimir Klichko","583568888","info@info.de","cool stuff bro"));
-		
-			
+
 		};
 	}
 
@@ -62,33 +66,68 @@ public class TvtehnikaApplication {
 	@Bean
 	public CommandLineRunner demo5(@Autowired PlayerRepository repository, @Autowired TeamRepository teamRepository) {
 		return (args) -> {
-				
-				// delete all players
-				repository.deleteAll();
-				
-				// add 90 players to different teams
+
+			// delete all players
+			repository.deleteAll();
+
+			// add 90 players to different teams
+			List<Integer> teamIds = teamRepository.getAllIds();
+			for (int i = 1; i < 91; i++) {
+
+				StringBuilder name = new StringBuilder();
+				name.append("Player");
+				name.append(i);
+				String playername = name.toString();
+				Player player = new Player(playername, i);
+
+				int randomTeamIdNumber = ThreadLocalRandom.current().nextInt(0, teamIds.size());
+				Integer teamIdLong = teamIds.get(randomTeamIdNumber);
+				Team team = teamRepository.getOne(teamIdLong);
+				player.setTeam(team);
+
+				repository.save(player);
+			}
+
+		};
+	}
+
+		@Bean
+		public CommandLineRunner demo6(@Autowired MatchRepository matchrepository, @Autowired TeamRepository teamRepository) {
+			return (args) -> {
+
+				// delete all matches
+				matchrepository.deleteAll();
+
+				// add different matches
 				List<Integer> teamIds=teamRepository.getAllIds();
-				for(int i=1;i<91;i++){
-			
-					StringBuilder name=new StringBuilder();
-					name.append("Player");
-					name.append(i);
-					String playername=name.toString();
-					Player player=new Player(playername,i);
-			
+				for(int i=1;i<10;i++){
+					Match match=new Match();
+					String res="";
+
 					int randomTeamIdNumber=ThreadLocalRandom.current().nextInt(0, teamIds.size());
 					Integer teamIdLong=teamIds.get(randomTeamIdNumber);
-					Team team = teamRepository.getOne(teamIdLong);
-					player.setTeam(team);
-					
-					repository.save(player);
-				}
-		
-				};
-				
+					Team team1 = teamRepository.getOne(teamIdLong);
+					match.setTeam1(team1);
+					res=res.concat(String.valueOf(teamIds.size()-teamIdLong));
+					res=res.concat("-");
 
-		
-	}
+					randomTeamIdNumber=ThreadLocalRandom.current().nextInt(0, teamIds.size());
+					teamIdLong=teamIds.get(randomTeamIdNumber);
+					Team team2=teamRepository.getOne(teamIdLong);
+					match.setTeam2(team2);
+
+					res=res.concat(String.valueOf(teamIds.size()-teamIdLong));
+					match.setResult(res);
+
+					matchrepository.save(match);
+				}
+
+			};
+
+
+
+
+		}
 
 
 }
