@@ -3,8 +3,9 @@ import Parser from 'html-react-parser';
 import Tournaments from "./Tournaments";
 import './template.css';
 import './index.css';
+import './Tournaments';
 
-const tournyAPI = 'http://localhost:8080/api/tournaments';
+const tournyAPI = 'http://localhost:8080/api/tournaments/';
 const teamAPI = 'http://localhost:8080/api/teams'
 
 class template extends Component {
@@ -26,26 +27,23 @@ class template extends Component {
       team6: [],
       team7: [],
       team8: [],
-      team9: [],
-      team10: [],
-      team11: [],
-      team12: [],
-      team13: [],
-      team14: [],
-      team15: [],
-      team16: [],
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+      if (prevProps.targetId !== this.props.targetId) {
+         fetch(tournyAPI + this.props.targetId)
+         .then((Response) => Response.json())
+         .then((findresponse) => {
+         console.log(findresponse);
+         this.setState({
+            tournydata:findresponse,
+         })
+      })
     }
   }
 
   componentDidMount() {
-    fetch(tournyAPI)
-    .then((Response) => Response.json())
-    .then((findresponse) => {
-      this.setState({
-        tournydata:findresponse.filter(res => res.id === 18),
-      })
-    })
-
     fetch(teamAPI)
     .then((teamResponse) => teamResponse.json())
     .then((teamfindresponse) => {
@@ -57,6 +55,7 @@ class template extends Component {
           break;
         }
       }
+
       this.setState({
         groupA:teamfindresponse.slice(0,4),
         groupB:teamfindresponse.slice(4,8),
@@ -93,7 +92,7 @@ class template extends Component {
                             </tr>
                             <tr>
                                 <td>1</td>
-                                <td><a href="http://localhost:8080/api/playersByTeam/83">{this.state.team1}</a></td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/83">{this.state.tournydata}</a></td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>

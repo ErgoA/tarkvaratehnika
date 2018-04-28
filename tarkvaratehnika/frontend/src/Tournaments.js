@@ -8,9 +8,9 @@ class Tournaments extends Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      targetId: null,
     }
-    this.testfun = this.testfun.bind(this);
   }
 
   componentDidMount() {
@@ -24,19 +24,10 @@ class Tournaments extends Component {
     })
   }
 
-  testfun(e) {
-    var target = e.target;
-    console.log(target);
-
-    let newClickedData = [];
-    newClickedData.push(target);
-    this.setState({
-       clickedData: newClickedData
-    });
-  }
-
-  reply_click(event) {
-    console.log(event.target.getAttribute('id'))
+  reply_click = id => {
+    return () => {
+        this.setState({ targetId: id })
+    }
   }
 
   render() {
@@ -48,12 +39,12 @@ class Tournaments extends Component {
               {
                 this.state.data.map((dynamicData, key) =>
                 <div>
-                  <a href={"/#/template"} id={dynamicData.id} onClick={this.reply_click}>{dynamicData.name}</a>
+                  <a href={"/#/template"} onClick={this.reply_click(dynamicData.id)}>{dynamicData.name}</a>
                   <a href={"/#/addTeams"}><button type="button" class="btn-lisa">Edit</button></a>
-
                 </div>
                 )
               }
+              {this.state.targetId ? <Template targetId={this.state.targetId}></Template> : null }
             </div>
           </div>
         </div>
