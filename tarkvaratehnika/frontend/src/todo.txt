@@ -1,4 +1,0 @@
-1)AddTeams component vaja refreshima panna pärast uue tiimi lisamist
-2)AddPlayers + nupp fixida
-3)/#/template teha kolm suurt veergu 1)Alagrupid 2)Fixtures 3)Statistics
-4)/#/template üleüldine css
