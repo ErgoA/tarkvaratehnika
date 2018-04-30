@@ -4,9 +4,12 @@ import Tournaments from "./Tournaments";
 import './template.css';
 import './index.css';
 import './Tournaments';
+import View from './View';
+import ToggleDisplay from 'react-toggle-display';
 
 const tournyAPI = 'http://localhost:8080/api/tournaments/';
-const teamAPI = 'http://localhost:8080/api/teams'
+const teamAPI = 'http://localhost:8080/api/teams';
+const matchAPI = 'http://localhost:8080/api/matches';
 
 class template extends Component {
 
@@ -27,6 +30,9 @@ class template extends Component {
       team6: [],
       team7: [],
       team8: [],
+      matchdata: [],
+      matchId: null,
+      show: false,
     }
   }
 
@@ -35,7 +41,7 @@ class template extends Component {
          fetch(tournyAPI + this.props.targetId)
          .then((Response) => Response.json())
          .then((findresponse) => {
-         console.log(findresponse);
+           console.log(findresponse);
          this.setState({
             tournydata:findresponse,
          })
@@ -47,15 +53,6 @@ class template extends Component {
     fetch(teamAPI)
     .then((teamResponse) => teamResponse.json())
     .then((teamfindresponse) => {
-      var length = teamfindresponse.length;
-      var i;
-      for (i=0; i<length; i++) {
-        if (teamfindresponse[i].name == "Kassid") {
-          var teamA = (teamfindresponse[i].name);
-          break;
-        }
-      }
-
       this.setState({
         groupA:teamfindresponse.slice(0,4),
         groupB:teamfindresponse.slice(4,8),
@@ -70,8 +67,21 @@ class template extends Component {
         team8:teamfindresponse[7].name,
       })
     })
+
+    fetch(matchAPI)
+    .then((matchResponse) => matchResponse.json())
+    .then((matchfindresponse) => {
+      this.setState({
+        matchdata:matchfindresponse,
+      })
+    })
   }
 
+  reply_click = id => {
+    return () => {
+        this.setState({ matchId: id })
+    }
+  }
 
   render() {
         return (
@@ -92,7 +102,7 @@ class template extends Component {
                             </tr>
                             <tr>
                                 <td>1</td>
-                                <td><a href="http://localhost:8080/api/playersByTeam/83">{this.state.tournydata}</a></td>
+                                <td><a href="http://localhost:8080/api/playersByTeam/83">{this.state.team1}</a></td>
                                 <td id="th-1">3</td>
                                 <td id="th-1">0</td>
                                 <td id="th-1">0</td>
@@ -262,21 +272,14 @@ class template extends Component {
                         <p>Viimased tulemused</p>
                         <div>
                             <table>
+                            {
+                              this.state.matchdata.map((dynamicData, key) =>
                                 <tr>
-                                    <td id="td-1">{this.state.team1}</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/View">0-2</a></td>
-                                    <td id="td-3">{this.state.team2}</td>
+                                    <td id="td-1">{dynamicData.team1.name}</td>
+                                    <td id="td-2"><a href={"/#/View"} onClick={this.reply_click(dynamicData.id)}>{dynamicData.result}</a></td>
+                                    <td id="td-3">{dynamicData.team2.name}</td>
                                 </tr>
-                                <tr>
-                                    <td id="td-1">{this.state.team3}</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/View">7-0</a></td>
-                                    <td id="td-3">{this.state.team4}</td>
-                                </tr>
-                                <tr>
-                                    <td id="td-1">{this.state.team5}</td>
-                                    <td id="td-2"><a href="http://localhost:3000/#/View">1-0</a></td>
-                                    <td id="td-3">{this.state.team6}</td>
-                                </tr>
+                              )}
                             </table>
                         </div>
                     </div>
@@ -308,6 +311,9 @@ class template extends Component {
                         </div>
                     </div>
                 </div>
+                <ToggleDisplay show={this.state.show}>
+                  <View matchId={this.state.matchId}></View>
+                </ToggleDisplay>
             </div>
         );
     }

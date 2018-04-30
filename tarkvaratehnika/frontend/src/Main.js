@@ -8,10 +8,10 @@ import Home from "./Home";
 import New from "./New";
 import Tournaments from "./Tournaments";
 import View from "./View";
-import Fixtures from "./Fixtures";
 import VisitorView from "./VisitorView";
 import template from "./template";
 import addTeams from "./addTeams";
+import Register from "./Register";
 
 class Main extends Component {
   render() {
@@ -21,16 +21,13 @@ class Main extends Component {
           <ul className="header">
             <li><NavLink exact to="/">Home</NavLink></li>
             <li><NavLink to="/New">New tournament</NavLink></li>
-            <li><NavLink to="/Tournaments">Tournaments</NavLink></li>
-            <li><NavLink to="/Fixtures">Fixtures</NavLink></li>
-            <li><NavLink to="/View">EditorView</NavLink></li>
-            <li><NavLink to="/VisitorView">VisitorView</NavLink></li>
+            <li><NavLink to="/#">Register</NavLink></li>
+            <li><NavLink to="/#">Log in</NavLink></li>
           </ul>
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/New" component={New}/>
             <Route path="/Tournaments" component={Tournaments}/>
-            <Route path="/Fixtures" component={Fixtures}/>
             <Route path="/View" component={View}/>
             <Route path="/VisitorView" component={VisitorView}/>
             <Route path="/template" component={template}/>

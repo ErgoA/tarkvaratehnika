@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Template from './template';
+import ToggleDisplay from "react-toggle-display";
 
 const API = 'http://localhost:8080/api/tournaments';
 
@@ -10,6 +11,7 @@ class Tournaments extends Component {
     this.state = {
       data: [],
       targetId: null,
+      show: false,
     }
   }
 
@@ -17,7 +19,6 @@ class Tournaments extends Component {
     fetch(API)
     .then((Response) => Response.json())
     .then((findresponse) => {
-      console.log(findresponse)
       this.setState({
         data:findresponse,
       })
@@ -36,6 +37,7 @@ class Tournaments extends Component {
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <div class="jumbotron text-center">
+              Tournaments:
               {
                 this.state.data.map((dynamicData, key) =>
                 <div>
@@ -44,10 +46,12 @@ class Tournaments extends Component {
                 </div>
                 )
               }
-              {this.state.targetId ? <Template targetId={this.state.targetId}></Template> : null }
             </div>
           </div>
         </div>
+        <ToggleDisplay show={this.state.show}>
+          <Template targetId={this.state.targetId}></Template>
+        </ToggleDisplay>
       </div>
     )
   }

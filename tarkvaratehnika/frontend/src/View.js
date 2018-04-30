@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
-const teamAPI = 'http://localhost:8080/api/teams'
-const playerAPI = 'http://localhost:8080/api/playersByTeam/69'
+const teamAPI = 'http://localhost:8080/api/teams/'
+const playerAPI = 'http://localhost:8080/api/playersByTeam/'
+const matchAPI = 'http://localhost:8080/api/match/'
 
 class View extends Component {
 
@@ -11,7 +12,25 @@ class View extends Component {
       data: [],
       playersData: [],
       update: [],
+      team1: [],
+      team2: [],
+      matchData: [],
+      testTeam: [],
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.matchId !== this.props.matchId) {
+      fetch(matchAPI + this.props.matchId)
+      .then((matchResponse) => matchResponse.json())
+      .then((matchfindresponse) => {
+        console.log(matchfindresponse);
+        this.setState({
+          matchData:matchfindresponse,
+          testTeam:matchfindresponse.team1.name,
+        })
+      })
+    }
   }
 
   componentDidMount() {
@@ -21,10 +40,12 @@ class View extends Component {
       console.log(findresponse)
       this.setState({
         data:findresponse,
+        team1:findresponse[0].name,
+        team2:findresponse[1].name,
       })
     })
 
-    fetch('http://localhost:8080/api/playersByTeam/' + 70)
+    fetch(playerAPI + 82)
     .then(playerResponse => playerResponse.json())
     .then(players => {
       console.log(players)
@@ -34,9 +55,14 @@ class View extends Component {
     })
   }
 
-  reply_click(event) {
-    var targetID = event.target.getAttribute('id')
-    console.log(targetID)
+  reply_click = id => {
+    return () => {
+        this.setState({ targetId: id })
+    }
+  }
+
+  updateScore() {
+    fetch('http://localhost:8080/api/updateMatch?matchId=15&result=2:2')
   }
 
   render() {
@@ -48,12 +74,10 @@ class View extends Component {
               <form>
                 <div class="form-group">
                   <label for="teamSelect">Select team:</label>
-                  {
-                    this.state.data.map((dynamicData, key) =>
-                      <select class="form-control" id='69' onChange={this.reply_click}>
-                        <option id='1'>{dynamicData.name}</option>
-                      </select>
-                  )}
+                    <select class="form-control" id='?' onChange={this.reply_click}>
+                      <option>{this.state.testTeam}</option>
+                      <option>{this.state.team2}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                   <label for="playerSelect">Select player:</label>
@@ -66,12 +90,13 @@ class View extends Component {
                 </div>
                 <button type="submit" name="yellow" class="btn btn-warning custom">Yellow card</button>
                 <button type="submit" name="red" class="btn btn-danger custom">Red card</button><br></br>
-                <button type="submit" name="goal" class="btn btn-success custom">GOAL</button>
+                <button type="submit" name="goal" onClick={this.updateScore} class="btn btn-success custom">GOAL</button>
                 <button type="submit" name="Assist" class="btn btn-primary custom">Assist</button><br></br>
               </form>
             <br></br>
             Match details<br></br>
             Score: 1:0
+            {this.state.matchData}
             <br></br>3'' Player A <i class="far fa-futbol"></i>
           </div>
         </div>
