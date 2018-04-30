@@ -53,7 +53,7 @@ public class MatchController {
         return "Saved";
     }
 
-    // get a Single Team by id
+    // get a Single match by id
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/match/{id}")
     public @ResponseBody Match getMatchById(@PathVariable(value = "id") int matchId) {
