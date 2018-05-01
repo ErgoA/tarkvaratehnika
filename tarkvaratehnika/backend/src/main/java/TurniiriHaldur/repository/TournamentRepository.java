@@ -1,18 +1,19 @@
-package TurniiriHaldur.repository;
+package com.example.tvtehnika.repository;
 
-import TurniiriHaldur.model.Tournament;
+import com.example.tvtehnika.model.Tournament;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import TurniiriHaldur.model.*;
+
+import java.util.List;
+
 
 @Repository
 public interface TournamentRepository extends JpaRepository<Tournament, Integer>{
-	/*
-    @Query(value = "SELECT * FROM tournament order by id asc", nativeQuery=true)
-    List<Tournament> findAllOrderByIdAsc();
-	@Query(value="DELETE * FROM tournament", nativeQuery=true)
-	void deleteAll();
-	*/
-	Tournament findByName(String name);
+	public Tournament findByName(String name);
+
+	@Query(value="SELECT t.id,t.name,t.organizer,t.info FROM tournament t", nativeQuery=true)
+	List<Tournament> Custom();
+
 }
 

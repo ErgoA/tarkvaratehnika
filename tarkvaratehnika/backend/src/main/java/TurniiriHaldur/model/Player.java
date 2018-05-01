@@ -1,4 +1,4 @@
-package TurniiriHaldur.model;
+package com.example.tvtehnika.model;
 
 import javax.persistence.*;
 
@@ -24,11 +24,13 @@ public class Player {
     public Player() {
     }
 
+    
     public Player(String name, /*Team team,*/ int number) {
         this.name = name;
         /*this.team = team;*/
         this.number = number;
     }
+
 
     public int getId() {
         return Id;
@@ -45,6 +47,8 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
+
 
     public int getNumber() {
         return number;

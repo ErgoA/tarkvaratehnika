@@ -1,25 +1,22 @@
-package TurniiriHaldur.controller;
+package com.example.tvtehnika.controller;
 
-import TurniiriHaldur.model.Player;
-import TurniiriHaldur.model.Team;
-import TurniiriHaldur.repository.PlayerRepository;
-import TurniiriHaldur.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import TurniiriHaldur.repository.*;
-import TurniiriHaldur.model.*;
+import com.example.tvtehnika.repository.*;
+import com.example.tvtehnika.model.*;
 
+
+import javax.persistence.JoinColumn;
 import java.util.List;
 
 @Controller
 @RequestMapping(path="/api")
 public class PlayerController {
-    @Autowired
-    PlayerRepository playerRepository;
-    @Autowired
-    TeamRepository teamRepository;
+    @Autowired PlayerRepository playerRepository;
+    @Autowired TeamRepository teamRepository;
     // get all players
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/players")
@@ -49,4 +46,5 @@ public class PlayerController {
     public @ResponseBody List<Player> getAllPlayersByTeamId(@PathVariable(value = "teamId") int teamId) {
         return playerRepository.findByTeamid(teamId);
     }
+
 }

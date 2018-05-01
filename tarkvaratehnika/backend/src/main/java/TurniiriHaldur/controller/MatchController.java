@@ -1,18 +1,13 @@
-package TurniiriHaldur.controller;
+package com.example.tvtehnika.controller;
 
-import TurniiriHaldur.model.Match;
-import TurniiriHaldur.model.Team;
-import TurniiriHaldur.model.Tournament;
-import TurniiriHaldur.repository.MatchRepository;
-import TurniiriHaldur.repository.TeamRepository;
-import TurniiriHaldur.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import TurniiriHaldur.repository.*;
-import TurniiriHaldur.model.*;
+import com.example.tvtehnika.repository.*;
+import com.example.tvtehnika.model.*;
+
 
 import java.util.List;
 
@@ -58,7 +53,7 @@ public class MatchController {
         return "Saved";
     }
 
-    // get a Single match by id
+    // get a Single Team by id
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/match/{id}")
     public @ResponseBody Match getMatchById(@PathVariable(value = "id") int matchId) {
@@ -85,4 +80,7 @@ public class MatchController {
         matchRepository.save(match);
         return "Saved";
     }
+
+
+
 }

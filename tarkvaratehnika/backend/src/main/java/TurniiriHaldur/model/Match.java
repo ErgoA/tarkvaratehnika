@@ -1,4 +1,4 @@
-package TurniiriHaldur.model;
+package com.example.tvtehnika.model;
 
 import javax.persistence.*;
 

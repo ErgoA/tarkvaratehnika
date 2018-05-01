@@ -1,7 +1,13 @@
-package TurniiriHaldur.model;
+package com.example.tvtehnika.model;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 
 @Entity
 public class Team {
@@ -22,11 +28,20 @@ public class Team {
     )
 	private List<Player> players;
 
+    public Set<Tournament> getTournaments() {
+        return tournaments;
+    }
+
+    public void setTournaments(Set<Tournament> tournaments) {
+        this.tournaments = tournaments;
+    }
+
     @OneToMany(
             mappedBy="team1",
             fetch=FetchType.LAZY,
             cascade = CascadeType.ALL
     )
+
     private List<Match> team1;
     @OneToMany(
             mappedBy="team2",
@@ -35,19 +50,14 @@ public class Team {
     )
     private List<Match> team2;
 
-    //private List<Player> players=new ArrayList<>();
-	
-	/*
-	public void addPlayer(Player player){
-	    players.add(player);
-	    player.setTeam(this);
-    }
-
-    public void removePlayer(Player player){
-	    players.remove(player);
-	    player.setTeam(null);
-    }
-	*/
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "teams")
+    @JsonIgnoreProperties("teams")
+    private Set<Tournament> tournaments = new HashSet<>();
 
     public Team(String name, String country, String contactPerson, String contactPhoneNumber, String contactEmail, String comment) {
         this.name = name;
@@ -69,15 +79,7 @@ public class Team {
 
     public Team() {
     }
-	/*
-    public List<Player> getPlayers() {
-        return players;
-    }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-	*/
     public int getId() {
         return Id;
     }

@@ -1,15 +1,13 @@
-package TurniiriHaldur.controller;
+package com.example.tvtehnika.controller;
 
-import TurniiriHaldur.model.Team;
-import TurniiriHaldur.repository.PlayerRepository;
-import TurniiriHaldur.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import TurniiriHaldur.repository.*;
-import TurniiriHaldur.model.*;
+import com.example.tvtehnika.repository.*;
+import com.example.tvtehnika.model.*;
+
 
 import java.util.List;
 
@@ -59,4 +57,5 @@ public class TeamController {
         return teamRepository.findById(teamId)
                 .orElseThrow(() -> new ResourceNotFoundException("Team not found"));
     }
+
 }

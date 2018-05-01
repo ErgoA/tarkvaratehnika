@@ -1,4 +1,7 @@
-package TurniiriHaldur.model;
+package com.example.tvtehnika.model;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -16,18 +19,17 @@ public class Tournament {
     @OneToMany(mappedBy="tournament")
     private Set<Match> matches=new HashSet<>();
 
-    //private List<Team> teams;
 
-    /*
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
-    }
-*/
-    //private Date date;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "tournament_teams",
+            joinColumns = { @JoinColumn(name = "tournament_id") },
+            inverseJoinColumns = { @JoinColumn(name = "team_id") })
+    @JsonIgnoreProperties("tournaments")
+    private Set<Team> teams=new HashSet<>();
 
     public Tournament(String name, /*Date date,*/ String organizer, String info) {
         this.name = name;
@@ -43,6 +45,7 @@ public class Tournament {
         return Id;
     }
 
+
     public void setId(int id) {
         Id = id;
 
@@ -56,21 +59,21 @@ public class Tournament {
         this.name = name;
     }
 
-    /*
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    */
     public String getOrganizer() {
         return Organizer;
     }
 
     public void setOrganizer(String organizer) {
         Organizer = organizer;
+    }
+
+
+    public Set<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 
     public String getInfo() {

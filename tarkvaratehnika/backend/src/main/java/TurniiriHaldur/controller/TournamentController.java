@@ -1,14 +1,17 @@
-package TurniiriHaldur.controller;
+package com.example.tvtehnika.controller;
 
-import TurniiriHaldur.model.Tournament;
-import TurniiriHaldur.model.Match;
-import TurniiriHaldur.repository.MatchRepository;
-import TurniiriHaldur.repository.TournamentRepository;
+import com.example.tvtehnika.model.Match;
+import com.example.tvtehnika.model.Team;
+import com.example.tvtehnika.model.Tournament;
+import com.example.tvtehnika.repository.MatchRepository;
+import com.example.tvtehnika.repository.TeamRepository;
+import com.example.tvtehnika.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,13 +21,14 @@ public class TournamentController {
     TournamentRepository tournamentRepository;
     @Autowired
     MatchRepository matchRepository;
+    @Autowired
+    TeamRepository teamRepository;
 
     //get all tournaments
 	@CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/tournaments")
-    public @ResponseBody List<Tournament> getAllTournaments() {
-        //return tournamentRepository.findAllOrderByIdAsc();
-		return tournamentRepository.findAll();
+    public @ResponseBody List<Tournament> Custom() {
+		return tournamentRepository.Custom();
     }
 
     // create a new tournament
@@ -36,6 +40,7 @@ public class TournamentController {
         tournament.setName(name);
         tournament.setOrganizer(organizer);
         tournamentRepository.save(tournament);
+
         return "Saved";
     }
 
@@ -53,4 +58,34 @@ public class TournamentController {
     public @ResponseBody List<Match> getAllMatchesByTournamentId(@PathVariable(value = "tournamentId") int tournamentId) {
         return matchRepository.findByTournamentId(tournamentId);
     }
+
+    // add teams to tournament
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/addTeamsToTournament")
+    public @ResponseBody String addTeamsToTournament(@RequestParam Integer tournamentId,
+                                                 @RequestParam Integer[] teamIds){
+        Tournament tournament = tournamentRepository.getOne(tournamentId);
+        for(int teamId:teamIds){
+            Team team=teamRepository.getOne(teamId);
+            tournament.getTeams().add(team);
+        }
+        tournamentRepository.save(tournament);
+
+        return "Saved";
+    }
+
+    // show tournament's teams
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/teamsByTournament/{tournamentId}")
+    public @ResponseBody List<Team> getAllTeamsByTournamentId(@PathVariable(value = "tournamentId") int tournamentId) {
+        Tournament tournament=tournamentRepository.getOne(tournamentId);
+        List<Team> teams=new ArrayList<Team>();
+        teams.addAll(tournament.getTeams());
+        return teams;
+    }
+
+
+
+
+
 }
