@@ -1,0 +1,22 @@
+1)./addTeams component refresh uue meeskonna/mängija lisamisel
+2)./view alguses ei kuva kohe mängijaid, mis võib statistika tegemisel ajusid keppida alguses
+3)kasutajatesüsteem?
+4)statistika?
+5)testimine ja bugfixid
+
+Promises:
+  componentDidMount() {
+  const promises = [
+    fetch(teamAPI).then(resp => resp.json()),
+    fetch(playerAPI + 22).then(resp => resp.json())
+  ];
+  Promise.all(promises).then(([teamData, playerData]) => {
+    console.log(teamData);
+    console.log(playerData);
+    this.setState({
+      team1:teamData[0].name,
+      team2:teamData[1].name,
+      playersData: playerData,
+    })
+  });
+}
