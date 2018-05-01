@@ -19,14 +19,14 @@ class View extends Component {
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.matchId !== this.props.matchId) {
-      fetch(matchAPI + this.props.matchId)
+  componentWillReceiveProps(newProps) {
+    if (newProps.matchId !== this.props.matchId) {
+      fetch(matchAPI + newProps.matchId)
       .then((matchResponse) => matchResponse.json())
       .then((matchfindresponse) => {
-        console.log(matchfindresponse);
+        console.log(matchfindresponse.team1.name);
+        console.log(this.props.matchId + ' ' + newProps.matchId);
         this.setState({
-          matchData:matchfindresponse,
           testTeam:matchfindresponse.team1.name,
         })
       })
@@ -34,26 +34,20 @@ class View extends Component {
   }
 
   componentDidMount() {
-    fetch(teamAPI)
-    .then((Response) => Response.json())
-    .then((findresponse) => {
-      console.log(findresponse)
-      this.setState({
-        data:findresponse,
-        team1:findresponse[0].name,
-        team2:findresponse[1].name,
-      })
+  const promises = [
+    fetch(teamAPI).then(resp => resp.json()),
+    fetch(playerAPI + 22).then(resp => resp.json())
+  ];
+  Promise.all(promises).then(([teamData, playerData]) => {
+    console.log(teamData);
+    console.log(playerData);
+    this.setState({
+      team1:teamData[0].name,
+      team2:teamData[1].name,
+      playersData: playerData,
     })
-
-    fetch(playerAPI + 82)
-    .then(playerResponse => playerResponse.json())
-    .then(players => {
-      console.log(players)
-      this.setState({
-        playersData:players
-      })
-    })
-  }
+  });
+}
 
   reply_click = id => {
     return () => {

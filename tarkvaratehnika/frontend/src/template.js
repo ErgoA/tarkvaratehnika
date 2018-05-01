@@ -7,7 +7,7 @@ import './Tournaments';
 import View from './View';
 import ToggleDisplay from 'react-toggle-display';
 
-const tournyAPI = 'http://localhost:8080/api/tournaments/';
+const tournyAPI = 'http://localhost:8080/api/teamsByTournament/';
 const teamAPI = 'http://localhost:8080/api/teams';
 const matchAPI = 'http://localhost:8080/api/matches';
 
@@ -41,6 +41,7 @@ class template extends Component {
          fetch(tournyAPI + this.props.targetId)
          .then((Response) => Response.json())
          .then((findresponse) => {
+           console.log(this.props.targetId);
            console.log(findresponse);
          this.setState({
             tournydata:findresponse,
