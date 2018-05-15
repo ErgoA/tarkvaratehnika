@@ -96,7 +96,8 @@ public class TournamentController {
         Tournament tournament=tournamentRepository.getOne(tournamentId);
         List<Team> teams=new ArrayList<Team>();
         teams.addAll(tournament.getTeams());
-        return teams;
+        teams.sort(Comparator.comparingInt(Team::getId));
+	return teams;
     }
 
 
