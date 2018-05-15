@@ -1,15 +1,13 @@
 package com.example.tvtehnika.controller;
 
+import com.example.tvtehnika.model.Player;
+import com.example.tvtehnika.model.Team;
+import com.example.tvtehnika.repository.PlayerRepository;
+import com.example.tvtehnika.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.tvtehnika.repository.*;
-import com.example.tvtehnika.model.*;
-
-
-import javax.persistence.JoinColumn;
 import java.util.List;
 
 @Controller
@@ -46,5 +44,32 @@ public class PlayerController {
     public @ResponseBody List<Player> getAllPlayersByTeamId(@PathVariable(value = "teamId") int teamId) {
         return playerRepository.findByTeamid(teamId);
     }
+
+    // update player's stats
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/updatePlayerStats")
+    public @ResponseBody String updatePlayerStats(@RequestParam(value="id", required=true) int playerId,
+                                             @RequestParam(value="goal", required=false,defaultValue = "0") int goal,
+                                              @RequestParam(value="assist", required=false,defaultValue = "0") int assist,
+                                             @RequestParam(value="yellowCard", required=false,defaultValue = "0") int yellowCard,
+                                             @RequestParam(value="redCard",required = false,defaultValue="0") int redCard){
+        Player player=playerRepository.getOne(playerId);
+        player.setGoals(player.getGoals()+goal);
+        player.setAssists(player.getAssists()+assist);
+        player.setYellowCards(player.getYellowCards()+yellowCard);
+        player.setRedCards(player.getRedCards()+redCard);
+        playerRepository.save(player);
+        return "Updated";
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/playersStats")
+    public @ResponseBody List<Object[]> getAllPlayersStats() {
+        return playerRepository.findstats();
+    }
+
+
+
+
 
 }
