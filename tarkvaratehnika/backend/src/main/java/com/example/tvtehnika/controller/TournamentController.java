@@ -73,7 +73,22 @@ public class TournamentController {
 
         return "Saved";
     }
+	
+    // add new to tournament
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/addNewTeamToTournament")
+    public @ResponseBody String addNewTeamToTournament(@RequestParam Integer tournamentId,
+                                                     @RequestParam String teamName){
+        Tournament tournament = tournamentRepository.getOne(tournamentId);
+        Team team=new Team();
+        team.setName(teamName);
+        teamRepository.save(team);
+        tournament.getTeams().add(team);
+        tournamentRepository.save(tournament);
 
+        return "Saved";
+    }
+	
     // show tournament's teams
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path="/teamsByTournament/{tournamentId}")
